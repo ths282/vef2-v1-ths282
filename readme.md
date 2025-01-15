@@ -64,6 +64,10 @@ Setja skal upp keyrslu á testum með [GitHub Actions](https://docs.github.com/e
 
 Setja skal upp _einfalt_ útlit á vefnum með flexbox eða grid. Takmarka heildarstærð og vera _responsive_.
 
+Forsíða skal hafa lista af spurningaflokkum með hlekk á síðu fyrir spurningaflokk.
+
+Á spurningaflokkssíðu skal vera hægt að svara hverri spurningu og ýta á takka til að fá að vita hvort svarið sé rétt eða ekki. Það skal gera greinilegt hvort svarið sé rétt ekki, t.d. með texta, lit, breytingu á viðmóti eða álíka. Þetta þarf að útfæra með JavaScript _á framenda_.
+
 Forritið skal útbúa merkingarfræðilegt og aðgengilegt HTML.
 
 ### Tæki og tól
@@ -72,7 +76,7 @@ Nota skal Node.js 22 og NPM.
 
 Aðeins skal nota ECMAScript modules (ESM, `import` og `export`) og ekki CommonJS (`require`).
 
-Setja skal upp `eslint` og `stylelint`, engar villur eða viðvaranir skulu vera til staðar.
+Setja skal upp `eslint`, engar villur eða viðvaranir skulu vera til staðar.
 
 ### GitHub & Netlify
 
@@ -80,11 +84,11 @@ Setja skal upp vefinn með niðurstöðum á Netlify tengt við GitHub. Við hve
 
 ## Mat
 
-- 20% – Lestur gagna, skrár lesnar, ógild gögn hunsuð.
-- 20% – Birting gagna, HTML búið til.
+- 25% – Lestur gagna, skrár lesnar, ógild gögn hunsuð.
+- 25% – Birting gagna, HTML búið til.
 - 20% – Vite notað fyrir framenda, grunn CSS fyrir viðmót, JavaScript virkni í framenda.
 - 10% – Prófanir og coverage.
-- 10% – Tæki og tól skv. forskrift, `eslint` og `stylelint` uppsett.
+- 10% – Tæki og tól skv. forskrift, `eslint` uppsett.
 - 10% – GitHub & Netlify, GitHub actions uppsett.
 
 ## Sett fyrir
@@ -117,8 +121,9 @@ Sett verða fyrir ([sjá nánar í kynningu á áfanga](https://github.com/veffo
 
 ---
 
-> Útgáfa 0.1
+> Útgáfa 0.2
 
-| Útgáfa | Breyting      |
-| ------ | ------------- |
-| 0.1    | Fyrsta útgáfa |
+| Útgáfa | Breyting                                                                               |
+| ------ | -------------------------------------------------------------------------------------- |
+| 0.1    | Fyrsta útgáfa                                                                          |
+| 0.2    | Bæta við 10% sem vantaði í mat; fjarlægja kröfu um `stylelint`; nánar um framendakröfu |
