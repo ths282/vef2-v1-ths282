@@ -48,6 +48,16 @@ Eftir lestur skal útbúa HTML skrár sem birta gögnin. Þær skulu vera í mö
 
 Nota skal [Vite](https://vite.dev/) fyrir framenda.
 
+Þegar unnið er með HTML í gegnum _template strings_ getur verið gott að nota extension sem virkjar syntax hightlight, t.d. [`Comment tagged template`](https://marketplace.visualstudio.com/items?itemName=bierner.comment-tagged-templates). Þá þarf að merkja með athugasemd fyrir framan strenginn:
+
+```javascript
+const html = /* html */ `
+  <div>
+    <h1>Titill</h1>
+  </div>
+`;
+```
+
 ### Prófanir
 
 Í verkefni skal skrifa próf með [Node.js test runner](https://nodejs.org/docs/latest-v22.x/api/test.html), [Jest](https://jestjs.io/) eða [Vitest](https://vitest.dev/) sem athugar hvort forritið virki eins og það á að gera.
@@ -121,10 +131,11 @@ Sett verða fyrir ([sjá nánar í kynningu á áfanga](https://github.com/veffo
 
 ---
 
-> Útgáfa 0.3
+> Útgáfa 0.4
 
 | Útgáfa | Breyting                                                                               |
 | ------ | -------------------------------------------------------------------------------------- |
 | 0.1    | Fyrsta útgáfa                                                                          |
 | 0.2    | Bæta við 10% sem vantaði í mat; fjarlægja kröfu um `stylelint`; nánar um framendakröfu |
 | 0.3    | Bæta við að nota megi Vitest fyrir próf                                                |
+| 0.4    | Bæta við dæmi um template strings og syntax highlighting                               |
