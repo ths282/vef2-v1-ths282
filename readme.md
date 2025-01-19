@@ -50,7 +50,7 @@ Nota skal [Vite](https://vite.dev/) fyrir framenda.
 
 ### Prófanir
 
-Í verkefni skal skrifa próf með [Node.js test runner](https://nodejs.org/docs/latest-v22.x/api/test.html) eða [Jest](https://jestjs.io/) sem athugar hvort forritið virki eins og það á að gera.
+Í verkefni skal skrifa próf með [Node.js test runner](https://nodejs.org/docs/latest-v22.x/api/test.html), [Jest](https://jestjs.io/) eða [Vitest](https://vitest.dev/) sem athugar hvort forritið virki eins og það á að gera.
 
 Allar skrár með kóða í `./src/lib` möppu skulu hafa test og line coverage skal vera a.m.k. 50% í heildina. Þetta á við node.js kóða, ekki þarf að telja með þann kóða sem keyrður er úr CLI/gegnum `build` scriptu.
 
@@ -121,9 +121,10 @@ Sett verða fyrir ([sjá nánar í kynningu á áfanga](https://github.com/veffo
 
 ---
 
-> Útgáfa 0.2
+> Útgáfa 0.3
 
 | Útgáfa | Breyting                                                                               |
 | ------ | -------------------------------------------------------------------------------------- |
 | 0.1    | Fyrsta útgáfa                                                                          |
 | 0.2    | Bæta við 10% sem vantaði í mat; fjarlægja kröfu um `stylelint`; nánar um framendakröfu |
+| 0.3    | Bæta við að nota megi Vitest fyrir próf                                                |
