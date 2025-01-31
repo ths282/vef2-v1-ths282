@@ -46,7 +46,7 @@ Eftir lestur skal útbúa HTML skrár sem birta gögnin. Þær skulu vera í mö
 
 Þar sem gögn innan `dist/` möppu eru _afleidd_ frá því sem er í `data/` möppu skal **ekki** setja þær inn í Git og hunsa þær með `.gitignore`.
 
-Nota skal [Vite](https://vite.dev/) fyrir framenda.
+Nota má [Vite](https://vite.dev/) fyrir framenda en það getur verið vesen að láta virka með skrám sem við búum til dýnamískt út frá `json` skránum. Hægt er að skoða sýnilausn á [verkefni 1 frá 2024](https://github.com/vefforritun/vef2-2024-v1-synilausn/) til að sjá hvernig það gæti verið útfært.
 
 Þegar unnið er með HTML í gegnum _template strings_ getur verið gott að nota extension sem virkjar syntax hightlight, t.d. [`Comment tagged template`](https://marketplace.visualstudio.com/items?itemName=bierner.comment-tagged-templates). Þá þarf að merkja með athugasemd fyrir framan strenginn:
 
@@ -96,7 +96,7 @@ Setja skal upp vefinn með niðurstöðum á Netlify tengt við GitHub. Við hve
 
 - 25% – Lestur gagna, skrár lesnar, ógild gögn hunsuð.
 - 25% – Birting gagna, HTML búið til.
-- 20% – Vite notað fyrir framenda, grunn CSS fyrir viðmót, JavaScript virkni í framenda.
+- 20% – Framendi uppsettur, grunn CSS fyrir viðmót, JavaScript virkni í framenda.
 - 10% – Prófanir og coverage.
 - 10% – Tæki og tól skv. forskrift, `eslint` uppsett.
 - 10% – GitHub & Netlify, GitHub actions uppsett.
@@ -131,7 +131,7 @@ Sett verða fyrir ([sjá nánar í kynningu á áfanga](https://github.com/veffo
 
 ---
 
-> Útgáfa 0.4
+> Útgáfa 0.5
 
 | Útgáfa | Breyting                                                                               |
 | ------ | -------------------------------------------------------------------------------------- |
@@ -139,3 +139,4 @@ Sett verða fyrir ([sjá nánar í kynningu á áfanga](https://github.com/veffo
 | 0.2    | Bæta við 10% sem vantaði í mat; fjarlægja kröfu um `stylelint`; nánar um framendakröfu |
 | 0.3    | Bæta við að nota megi Vitest fyrir próf                                                |
 | 0.4    | Bæta við dæmi um template strings og syntax highlighting                               |
+| 0.5    | Aflétta kröfu um vite og benda á sýnilausn frá 2024 fyrir uppsetningu á buildi         |
