@@ -1,0 +1,10 @@
+{
+  "name": "vef2-2025-v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/generate.js",
+  "scripts": {
+    "build": "run-s build:*",
+    "dev": "browser-sync start --serveStatic ./dist --server --files ./public/styles.css ./dist/*.*"
+  }
+}
