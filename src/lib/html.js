@@ -90,6 +90,13 @@ export function questionnaireTemplate(questionnaire) {
     return template(questionnaire.title, body);
 }
 
+/**
+ * Function that writes an html phrase so it appears as normal text, doesn't get formatted.
+ * 
+ * This one was written by AI!
+ * @param {*} unsafe 
+ * @returns 
+ */
 export function escapeHtml(unsafe) {
   return unsafe.replace(/[&<>"']/g, function(m) {
     switch (m) {

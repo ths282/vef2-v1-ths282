@@ -2,6 +2,10 @@ import { readFile as fsReadFile, mkdir, readdir, stat } from 'fs/promises';
 import { join } from 'path';
 
 /**
+ * Þetta skjal var tekið beint úr Vefforritun 2, verkefni 1 frá því árið 2024. Ég breytti því ekki neitt.
+ */
+
+/**
  * Check if a directory exists.
  * @param {string} dir Directory to check
  * @returns `true` if dir exists, `false` otherwise
