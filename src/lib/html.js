@@ -61,12 +61,11 @@ export function indexTemplate(categories) {
  * @returns {string} HTML for the questionnaire page.
  */
 export function questionnaireTemplate(questionnaire) {
-
     const questionHTML = questionnaire.questions.map(question => {
         const answersHTML = question.answers.map(answer => /* HTML */ `
           <label>
-            <input type="radio" name="question" value="${answer.text}">
-            ${answer.text}
+            <input type="radio" name="question" value="${escapeHtml(answer.text)}">
+            ${escapeHtml(answer.text)}
           </label><br>
         `).join('');
 
@@ -75,7 +74,7 @@ export function questionnaireTemplate(questionnaire) {
             <h2>${question.text}</h2>
             <form>
                 ${answersHTML}
-                <button type="button" class="submit">Staðfesta</button>
+                <button type="button" class="submit">Birta rétt svar</button>
                 <div class="result"></div>
             </form>
           </div>
@@ -89,5 +88,24 @@ export function questionnaireTemplate(questionnaire) {
     `;
 
     return template(questionnaire.title, body);
+}
+
+export function escapeHtml(unsafe) {
+  return unsafe.replace(/[&<>"']/g, function(m) {
+    switch (m) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case "'":
+        return '&#039;';
+      default:
+        return m;
+    }
+  });
 }
 

@@ -38,6 +38,8 @@ async function main() {
   console.info("categories read, total", categories.length);
   console.log(categories);
 
+  const index = [];
+
   // Búum til HTML skrár
   for (const category of categories) {
     const questionnaireJsonData = await readFile(
@@ -54,9 +56,11 @@ async function main() {
     const fileName = `${questionnaire.title.toLowerCase().replace(/\s/g, "-")}.html`;
     await writeFile(join(OUTPUT_DIR, fileName), questionnaireHTML);
     console.info(`Generated ${fileName}`);
+
+    index.push(category);
   }
 
-  const indexHTML = indexTemplate(categories);
+  const indexHTML = indexTemplate(index);
   await writeFile(join(OUTPUT_DIR, "index.html"), indexHTML, "utf8");
   console.info("Generated index.html");
 
