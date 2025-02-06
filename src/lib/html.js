@@ -56,39 +56,12 @@ export function indexTemplate(categories) {
 }
 
 /**
- * Generate HTML for questions about a category.
- * @param {Array<import('./parse').Questionnaire>} questions
- * @returns {string} HTML for questions.
- */
-export function questionnaireTemplate(questions) {
-  const answerMapper = (/** @type import('./parse').Answer */ a) => /* HTML */ `
-    <li>${a.text} ${a.correct.valueOf}</li>
-  `;
-  const answers = questions.map(
-    (question) => /* HTML */ `
-      <section>
-        <h2>${question.text}</h2>
-        <ul>
-          ${question.answers.map(answerMapper).join('')}
-        </ul>
-      </section>
-    `
-  );
-  const body = /* HTML */ `
-    <h1>Spurningar</h1>
-    ${games.join("")}
-    <p><a href="index.html">Til baka á forsíðu</a>.</p>
-  `;
-  return template("Vefforritun quiz!", body);
-}
-import { template } from './template.js'; // Import your main template function
-
-/**
  * Generate HTML for a questionnaire.
  * @param {import('./parse').Questionnaire} questionnaire The questionnaire data (with title and questions).
  * @returns {string} HTML for the questionnaire page.
  */
 export function questionnaireTemplate(questionnaire) {
+
     const questionHTML = questionnaire.questions.map(question => {
         const answersHTML = question.answers.map(answer => /* HTML */ `
           <label>

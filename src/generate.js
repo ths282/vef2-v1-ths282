@@ -36,22 +36,23 @@ async function main() {
   }
 
   console.info("categories read, total", categories.length);
+  console.log(categories);
 
   // Búum til HTML skrár
-  for (const questionnaire of categories) {
+  for (const category of categories) {
     const questionnaireJsonData = await readFile(
       join(INPUT_DIR, category.file)
     );
     const questionnaire = parseQuestionnaireFile(questionnaireJsonData);
 
     if (!questionnaire) {
-      console.error(`error parsing data for ${category.title}`);
+      console.error(`error parsing data`);
       continue;
     }
 
     const questionnaireHTML = questionnaireTemplate(questionnaire);
-    const fileName = `${category.title.toLowerCase().replace(/\s/g, "-")}.html`;
-    await writeFile(join(OUTPUT_DIR, fileName), categoryHTML);
+    const fileName = `${questionnaire.title.toLowerCase().replace(/\s/g, "-")}.html`;
+    await writeFile(join(OUTPUT_DIR, fileName), questionnaireHTML);
     console.info(`Generated ${fileName}`);
   }
 

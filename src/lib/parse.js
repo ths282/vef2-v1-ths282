@@ -33,11 +33,11 @@
  */
 export function parseAnswer(data) {
   if (typeof data !== "object" || !data) {
-    console.warn("illegal team object", data);
+    console.warn("illegal answer object", data);
     return null;
   }
 
-  if (!("answer" in data) || typeof data.name !== "string") {
+  if (!("answer" in data) || typeof data.answer !== "string") {
     console.warn("illegal answer data", data);
     return null;
   }
@@ -50,41 +50,6 @@ export function parseAnswer(data) {
   return {
     text: data.answer,
     correct: data.correct,
-  };
-}
-
-/**
- * Parse question data. Skips illegal data.
- * @param {Array<unknown>} data Potential question data.
- * @returns {Question | null} Question object.
- */
-export function parseQuestions(data) {
-  if (typeof data !== "object" || !data) {
-    console.warn("Illegal question object:", data);
-    return null;
-  }
-
-  if (typeof data.question !== "string") {
-    console.warn("Illegal question text:", data);
-    return null;
-  }
-
-  if (!Array.isArray(data.answers)) {
-    console.warn("Illegal answers array:", data);
-    return null;
-  }
-
-  const answers = [];
-  for (const answerData of data.answers) {
-    const parsedAnswer = parseAnswer(answerData);
-    if (parsedAnswer) {
-      answers.push(parsedAnswer);
-    }
-  }
-
-  return {
-    text: data.question,
-    answers: answers,
   };
 }
 
@@ -104,7 +69,7 @@ export function parseQuestions(data) {
   for (const questionData of data) {
     if (typeof questionData !== "object" || !questionData) {
       console.warn("invalid question data:", questionData);
-      return null;
+      continue;
     }
 
     if (
@@ -112,12 +77,12 @@ export function parseQuestions(data) {
       typeof questionData.question !== "string"
     ) {
       console.warn("invalid question text:", questionData);
-      return null;
+      continue;
     }
 
     if (!Array.isArray(questionData.answers)) {
       console.warn("question data does not have answers array:", questionData);
-      return null;
+      continue;
     }
 
     const answers = [];
@@ -180,40 +145,43 @@ export function parseIndexJson(data) {
 /**
  * Parse a JSON string and try and get an array of questionnaires.
  * @param {object} data Potential questionnaire data.
- * @returns {Questionnaire} Questionnaire object.
- * @throws If unable to parse JSON.
+ * @returns {Questionnaire | null} Questionnaire object or null if parsing fails.
  */
 export function parseQuestionnaireFile(data) {
-  // Again, explicitly set type to `unknown` instead of the implicit `any`.
-  /** @type unknown */
-  let questionnaireParsed;
-
   try {
-    questionnaireParsed = JSON.parse(data);
+    let questionnaireParsed = JSON.parse(data);
+
+    if (typeof questionnaireParsed !== "object" || !questionnaireParsed) {
+      console.warn("questionnaire data is not an object");
+      return null;
+    }
+
+    if (
+      !("title" in questionnaireParsed) ||
+      typeof questionnaireParsed.title !== "string"
+    ) {
+      console.warn("Questionnaire data does not have a title. Skipping.");
+      return null;
+    }
+
+    if (
+      !("questions" in questionnaireParsed) ||
+      !Array.isArray(questionnaireParsed.questions)
+    ) {
+      console.warn("Questionnaire data does not have a questions array. Skipping.");
+      return null;
+    }
+
+    // Destructure after validation to ensure properties exist
+    const { title, questions } = questionnaireParsed;
+
+    return {
+      title,
+      questions: parseQuestions(questionnaireParsed.questions) 
+    };
+
   } catch (e) {
-    throw new Error("unable to parse questionnaire data");
+    console.warn("Unable to parse questionnaire data. Skipping.", e); // Log the actual error for debugging
+    return null; // Return null to indicate failure
   }
-
-  if (typeof questionnaireParsed !== "object" || !questionnaireParsed) {
-    throw new Error("questionnaire data is not an object");
-  }
-
-  if (
-    !("title" in questionnaireParsed) ||
-    typeof questionnaireParsed.title !== "string"
-  ) {
-    throw new Error("questionnaire data does not have a title");
-  }
-
-  if (
-    !("questions" in questionnaireParsed) ||
-    !Array.isArray(questionnaireParsed.questions)
-  ) {
-    throw new Error("questionnaire data does not have questions array");
-  }
-
-  return {
-    title,
-    questions: parseQuestions(questionnaireParsed.questions),
-  };
 }
